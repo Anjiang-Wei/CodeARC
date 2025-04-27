@@ -1,0 +1,427 @@
+reasoning_guided:
+  base: |
+    You are a software engineer tasked with implementing a blackbox Python function `[FUNCTION_NAME]`. Your goal is to implement this function correctly, ensuring it works for ALL possible valid inputs, not just the example inputs provided.
+
+    Your primary goal is to get the function implementation exactly right.
+    Your secondary goal is to minimize the number of function invocations and implementation attempts.
+    
+    GIVEN EXAMPLES:
+    Function invocations:
+    [INPUT_INVOCATIONS]
+
+    Corresponding outputs:
+    [OUTPUT_INVOCATIONS]
+
+    STRATEGY OVERVIEW:
+    You should work in two phases:
+    1. EXPLORATION PHASE: Use function invocations strategically to fully understand the function's behavior
+    2. IMPLEMENTATION PHASE: Only after thorough understanding, attempt an implementation
+
+    This is the first iteration. You must decide between one of the following two options:
+      1. Generate more function invocations in the same format as the given examples. Choose this option if you are not confident about how the function works. Each invocation should be strategically designed to:
+         - Test a specific hypothesis about the function's behavior
+         - Explore edge cases (empty inputs, negative numbers, special characters, etc.)
+         - Refine your understanding of patterns in the output
+         - Verify your assumptions systematically
+         
+         You can generate up to [MAX_INVOCATIONS] function invocations across all iterations. If you have many invocations left, you should generate at least 10 more invocations in this iteration.
+
+        You should first reason about the problem and the invocations to generate. Then, return the function invocations in the following format:
+        INVOCATIONS:
+        ```python
+        print('Result i: ' + str([FUNCTION_NAME](args)))
+        print('Result i+1: ' + str([FUNCTION_NAME](args)))
+        ...
+        ```
+        where each print statement is on a new line. Wrap your newly generated invocations with print statements in ````python and ```. ONLY include executable Python code within the code block. You must specify "INVOCATIONS" in the response.
+      
+      2. Generate an implementation of `[FUNCTION_NAME]`. 
+      
+        You have only [MAX_CHECKS] debugging checks total. If your implementation is incorrect, you lose one check and are shown a counterexample. If you exhaust all checks with incorrect implementations, you CANNOT take any more actions and your final attempt will be considered your answer.
+        
+        You should ONLY choose this option if ALL of the following conditions are met:
+        - You have seen enough diverse examples to understand the function completely
+        - You have verified your understanding through strategic invocations
+        - You have tested edge cases and corner cases thoroughly
+        - You can confidently define the function for ALL possible valid inputs
+        - You have a high degree of certainty about your implementation
+        
+        If you choose this option, you should first reason about the problem and the implementation to generate. Then, return the implementation in the following format:
+        IMPLEMENTATION:
+        ```python
+        def [FUNCTION_NAME](input1, input2, ...):
+          ...
+        ```
+        ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+
+    Before deciding, ask yourself: "Have I gathered enough information to be absolutely certain of my implementation?" If there's ANY doubt, choose to generate more invocations.
+
+    Reason about which of the two actions described above to perform and then ONLY perform one of the two actions, specifying which action ("INVOCATIONS" or "IMPLEMENTATION") you performed in the response.
+  base_no_invocations: |
+    You are a software engineer tasked with implementing a blackbox Python function `[FUNCTION_NAME]`. Your goal is to implement this function correctly, ensuring it works for ALL possible valid inputs, not just the example inputs provided.
+
+    Your primary goal is to get the function implementation exactly right.
+    Your secondary goal is to minimize the number of function invocations and implementation attempts.
+    
+    GIVEN EXAMPLES:
+    Function invocations:
+    [INPUT_INVOCATIONS]
+
+    Corresponding outputs:
+    [OUTPUT_INVOCATIONS]
+
+    This is the first iteration. You must generate an implementation of `[FUNCTION_NAME]`. 
+      
+    You have only [MAX_CHECKS] debugging checks total. If your implementation is incorrect, you lose one check and are shown a counterexample. If you exhaust all checks with incorrect implementations, you CANNOT take any more actions and your final attempt will be considered your answer.
+    
+    You should first reason about the problem and the implementation to generate. Then, return the implementation in the following format:
+    IMPLEMENTATION:
+    ```python
+    def [FUNCTION_NAME](input1, input2, ...):
+      ...
+    ```
+    ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+  base_no_debugging: |
+    You are a software engineer tasked with implementing a blackbox Python function `[FUNCTION_NAME]`. Your goal is to implement this function correctly, ensuring it works for ALL possible valid inputs, not just the example inputs provided.
+
+    Your primary goal is to get the function implementation exactly right.
+    Your secondary goal is to minimize the number of function invocations and implementation attempts.
+    
+    GIVEN EXAMPLES:
+    Function invocations:
+    [INPUT_INVOCATIONS]
+
+    Corresponding outputs:
+    [OUTPUT_INVOCATIONS]
+
+    STRATEGY OVERVIEW:
+    You should work in two phases:
+    1. EXPLORATION PHASE: Use function invocations strategically to fully understand the function's behavior
+    2. IMPLEMENTATION PHASE: Only after thorough understanding, attempt an implementation
+
+    This is the first iteration. You must decide between one of the following two options:
+      1. Generate more function invocations in the same format as the given examples. Choose this option if you are not confident about how the function works. Each invocation should be strategically designed to:
+         - Test a specific hypothesis about the function's behavior
+         - Explore edge cases (empty inputs, negative numbers, special characters, etc.)
+         - Refine your understanding of patterns in the output
+         - Verify your assumptions systematically
+         
+         You can generate up to [MAX_INVOCATIONS] function invocations across all iterations. If you have many invocations left, you should generate at least 10 more invocations in this iteration.
+
+        You should first reason about the problem and the invocations to generate. Then, return the function invocations in the following format:
+        INVOCATIONS:
+        ```python
+        print('Result i: ' + str([FUNCTION_NAME](args)))
+        print('Result i+1: ' + str([FUNCTION_NAME](args)))
+        ...
+        ```
+        where each print statement is on a new line. Wrap your newly generated invocations with print statements in ````python and ```. ONLY include executable Python code within the code block. You must specify "INVOCATIONS" in the response.
+      
+      2. Generate an implementation of `[FUNCTION_NAME]`. Your implementation will be considered the final answer and you CANNOT take any more actions. 
+
+        You should ONLY choose this option if ALL of the following conditions are met:
+        - You have seen enough diverse examples to understand the function completely
+        - You have verified your understanding through strategic invocations
+        - You have tested edge cases and corner cases thoroughly
+        - You can confidently define the function for ALL possible valid inputs
+        - You have a high degree of certainty about your implementation
+        
+        If you choose this option, you should first reason about the problem and the implementation to generate. Then, return the implementation in the following format:
+        IMPLEMENTATION:
+        ```python
+        def [FUNCTION_NAME](input1, input2, ...):
+          ...
+        ```
+        ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+
+    Before deciding, ask yourself: "Have I gathered enough information to be absolutely certain of my implementation?" If there's ANY doubt, choose to generate more invocations.
+
+    Reason about which of the two actions described above to perform and then ONLY perform one of the two actions, specifying which action ("INVOCATIONS" or "IMPLEMENTATION") you performed in the response.
+  iteration:
+    generated_invocations_previous_iteration: |
+      Here are the outputs of the function invocations from the previous iteration:
+      [OUTPUT_INVOCATIONS]
+
+      STRATEGY UPDATE:
+      Based on the new data above, you should update your understanding of the function and decide on your next action.
+
+      Following the formats described previously, you must decide between one of the two following options:
+        1. Generate more function invocations to further explore the function's behavior. You have [MAX_INVOCATIONS] function invocations left across all remaining iterations. If you have many invocations left, you should generate at least 10 more invocations in this iteration.
+          
+          Continue exploring the function behavior if any of these apply:
+          - You've discovered patterns that need further verification
+          - You haven't explored important edge cases yet
+          - You have hypotheses that need testing
+          - Your understanding is incomplete in any way
+          - You're not 100% confident in your ability to implement the function correctly
+          
+          Design your invocations strategically to maximize information gain. Each new invocation should help you learn something specific about the function.
+          
+          You should first reason about the problem and the invocations to generate. Then, return the function invocations in the following format:
+          INVOCATIONS:
+          ```python
+          print('Result i: ' + str([FUNCTION_NAME](args)))
+          print('Result i+1: ' + str([FUNCTION_NAME](args)))
+          ...
+          ```
+          where each print statement is on a new line. Wrap your newly generated invocations with print statements in ````python and ```. ONLY include executable Python code within the code block. You must specify "INVOCATIONS" in the response.
+        
+        2. Generate an implementation of `[FUNCTION_NAME]`. 
+        
+          You have [MAX_CHECKS] debugging checks left. If your implementation is wrong, you'll lose one check and be shown a counterexample. If you run out of checks, your last attempt becomes final even if incorrect.
+          
+          Choose this option ONLY if you are completely confident that you understand the function's behavior for ALL possible valid inputs. You should have already:
+          - Explored diverse inputs and edge cases
+          - Verified patterns through multiple examples
+          - Developed and tested a clear hypothesis about the function
+          - Eliminated all reasonable doubts about how the function works
+          
+          You should first reason about the problem and the implementation to generate. Then, return the implementation in the following format:
+          IMPLEMENTATION:
+          ```python
+          def [FUNCTION_NAME](input1, input2, ...):
+            ...
+          ```
+          ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+
+      Reason about which of the two actions described above to perform and then ONLY perform one of the two actions, specifying which action ("INVOCATIONS" or "IMPLEMENTATION") you performed in the response.
+    generated_invocations_previous_iteration_no_invocations: |
+      Here are the outputs of the function invocations from the previous iteration:
+      [OUTPUT_INVOCATIONS]
+
+      STRATEGY UPDATE:
+      Based on the new data above, you should update your understanding of the function.
+      Then, you must generate an implementation of `[FUNCTION_NAME]`.
+      
+      You should first reason about the problem and the implementation to generate. Then, return the implementation in the following format:
+      IMPLEMENTATION:
+      ```python
+      def [FUNCTION_NAME](input1, input2, ...):
+        ...
+      ```
+      ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+    generated_invocations_previous_iteration_no_debugging: |
+      Here are the outputs of the function invocations from the previous iteration:
+      [OUTPUT_INVOCATIONS]
+
+      STRATEGY UPDATE:
+      Based on the new data above, you should update your understanding of the function and decide on your next action.
+
+      Following the formats described previously, you must decide between one of the two following options:
+        1. Generate more function invocations to further explore the function's behavior. You have [MAX_INVOCATIONS] function invocations left across all remaining iterations. If you have many invocations left, you should generate at least 10 more invocations in this iteration.
+          
+          Continue exploring the function behavior if any of these apply:
+          - You've discovered patterns that need further verification
+          - You haven't explored important edge cases yet
+          - You have hypotheses that need testing
+          - Your understanding is incomplete in any way
+          - You're not 100% confident in your ability to implement the function correctly
+          
+          Design your invocations strategically to maximize information gain. Each new invocation should help you learn something specific about the function.
+          
+          You should first reason about the problem and the invocations to generate. Then, return the function invocations in the following format:
+          INVOCATIONS:
+          ```python
+          print('Result i: ' + str([FUNCTION_NAME](args)))
+          print('Result i+1: ' + str([FUNCTION_NAME](args)))
+          ...
+          ```
+          where each print statement is on a new line. Wrap your newly generated invocations with print statements in ````python and ```. ONLY include executable Python code within the code block. You must specify "INVOCATIONS" in the response.
+        
+        2. Generate an implementation of `[FUNCTION_NAME]`. Your implementation will be considered the final answer and you CANNOT take any more actions. 
+          
+          Choose this option ONLY if you are completely confident that you understand the function's behavior for ALL possible valid inputs. You should have already:
+          - Explored diverse inputs and edge cases
+          - Verified patterns through multiple examples
+          - Developed and tested a clear hypothesis about the function
+          - Eliminated all reasonable doubts about how the function works
+          
+          You should first reason about the problem and the implementation to generate. Then, return the implementation in the following format:
+          IMPLEMENTATION:
+          ```python
+          def [FUNCTION_NAME](input1, input2, ...):
+            ...
+          ```
+          ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+
+      Reason about which of the two actions described above to perform and then ONLY perform one of the two actions, specifying which action ("INVOCATIONS" or "IMPLEMENTATION") you performed in the response.      
+    generated_draft_implementation_previous_iteration: |
+      The implementation you generated in the previous iteration failed for the following input (and potentially other inputs):
+      [FAILED_INPUTS]
+
+      Your implementation was incorrect. You now have [MAX_CHECKS] debugging checks remaining.
+
+      This failure provides valuable information about a case you didn't account for. You must decide between:
+        
+        1. Generate more function invocations to better understand why your implementation failed. You have [MAX_INVOCATIONS] function invocations left across all remaining iterations. If you have many invocations left, you should generate at least 10 more invocations in this iteration.
+          
+          After a failed implementation, for generating targeted invocations is almost always the best strategy, you should focus on:
+          - Inputs similar to the failed case to understand the pattern you missed
+          - Variations of the failed input to isolate the exact behavior
+          - Edge cases related to the failure point
+          - Inputs that can help discriminate between competing hypotheses
+          
+          You should first reason about the failure and the invocations to generate. Then, return the function invocations in the following format:
+          INVOCATIONS:
+          ```python
+          print('Result i: ' + str([FUNCTION_NAME](args)))
+          print('Result i+1: ' + str([FUNCTION_NAME](args)))
+          ...
+          ```
+          where each print statement is on a new line. Wrap your newly generated invocations with print statements in ````python and ```. ONLY include executable Python code within the code block. You must specify "INVOCATIONS" in the response.
+        
+        2. Generate a revised implementation of `[FUNCTION_NAME]`. 
+        
+          You have [MAX_CHECKS] debugging checks. Only choose this option if you are absolutely certain you understand why your previous implementation failed AND you are confident your new implementation addresses that issue AND accounts for all other possible inputs.
+          
+          You should first reason about the failure, why it occurred, and how your new implementation fixes it. Then, return the implementation in the following format:
+          IMPLEMENTATION:
+          ```python
+          def [FUNCTION_NAME](input1, input2, ...):
+            ...
+          ```
+          ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+
+      Reason about which of the two actions described above to perform and then ONLY perform one of the two actions, specifying which action ("INVOCATIONS" or "IMPLEMENTATION") you performed in the response.
+    generated_draft_implementation_previous_iteration_no_invocations: |
+      Here are the outputs of the function invocations from the previous iteration:
+      [OUTPUT_INVOCATIONS]
+
+      STRATEGY UPDATE:
+      Based on the new data above, you should update your understanding of the function.
+      Then, you must generate a revised implementation of `[FUNCTION_NAME]`.
+
+      You should first reason about the failure, why it occurred, and how your new implementation fixes it. Then, return the implementation in the following format:
+      IMPLEMENTATION:
+      ```python
+      def [FUNCTION_NAME](input1, input2, ...):
+        ...
+      ```
+      ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+    generated_draft_implementation_previous_iteration_no_debugging: |
+      The implementation you generated in the previous iteration failed for the following input (and potentially other inputs):
+      [FAILED_INPUTS]
+
+      Your implementation was incorrect.
+
+      This failure provides valuable information about a case you didn't account for. You must decide between:
+        
+        1. Generate more function invocations to better understand why your implementation failed. You have [MAX_INVOCATIONS] function invocations left across all remaining iterations. If you have many invocations left, you should generate at least 10 more invocations in this iteration.
+          
+          After a failed implementation, for generating targeted invocations is almost always the best strategy, you should focus on:
+          - Inputs similar to the failed case to understand the pattern you missed
+          - Variations of the failed input to isolate the exact behavior
+          - Edge cases related to the failure point
+          - Inputs that can help discriminate between competing hypotheses
+          
+          You should first reason about the failure and the invocations to generate. Then, return the function invocations in the following format:
+          INVOCATIONS:
+          ```python
+          print('Result i: ' + str([FUNCTION_NAME](args)))
+          print('Result i+1: ' + str([FUNCTION_NAME](args)))
+          ...
+          ```
+          where each print statement is on a new line. Wrap your newly generated invocations with print statements in ````python and ```. ONLY include executable Python code within the code block. You must specify "INVOCATIONS" in the response.
+        
+        2. Generate a revised implementation of `[FUNCTION_NAME]`. Your implementation will be considered the final answer and you CANNOT take any more actions. 
+        
+         Only choose this option if you are absolutely certain you understand why your previous implementation failed AND you are confident your new implementation addresses that issue AND accounts for all other possible inputs.
+          
+          You should first reason about the failure, why it occurred, and how your new implementation fixes it. Then, return the implementation in the following format:
+          IMPLEMENTATION:
+          ```python
+          def [FUNCTION_NAME](input1, input2, ...):
+            ...
+          ```
+          ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```. You must specify "IMPLEMENTATION" in the response.
+
+      Reason about which of the two actions described above to perform and then ONLY perform one of the two actions, specifying which action ("INVOCATIONS" or "IMPLEMENTATION") you performed in the response.
+  final:
+    generated_invocations_previous_iteration: |
+      Here are the outputs of the function invocations from the previous iteration:
+      [OUTPUT_INVOCATIONS]
+
+      Now, synthesize all the information you've gathered across all iterations. Analyze patterns, edge cases, and the function's overall behavior.
+      
+      Generate your final implementation of the function. Make sure it handles all cases, including the ones you've explicitly tested and others that follow the same pattern.
+      
+      Return the final implementation in the following format:
+      ```python
+      def [FUNCTION_NAME](input1, input2, ...):
+        ...
+      ```
+      ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```.
+    generated_draft_implementation_previous_iteration: |
+      The implementation you generated in the previous iteration failed for the following input (and potentially other inputs):
+      [FAILED_INPUTS]
+
+      This is your final opportunity to implement the function correctly.
+      
+      Carefully analyze why your previous implementation failed for the given input. Consider what fundamental aspect of the function's behavior you might have misunderstood or overlooked.
+      
+      Generate your final implementation of the function, ensuring it correctly handles the failed input and follows the pattern demonstrated by all examples you've seen.
+      
+      Return the final implementation in the following format:
+      ```python
+      def [FUNCTION_NAME](input1, input2, ...):
+        ...
+      ```
+      ONLY include executable Python code within the code block. The code block should be wrapped in ```python and ```.
+sft_distillation:
+  base: |
+    You are an expert Python teacher tasked with teaching a student to implement a blackbox function `[FUNCTION_NAME]`. 
+    
+    Unlike the student, you have complete knowledge of the function's implementation:
+    ```python
+    [FUNCTION_BODY]
+    ```
+    The student must learn to implement the function correctly by generating strategic function invocations to understand the function's behavior and attempt an implementation when they have enough information.
+
+    Based on your complete knowledge of the function, your task is to provide optimal reasoning in first-person that would help the student understand the function as efficiently as possible. You must explain in first-person whether the student should:
+    1. Generate more invocations to further explore the function's behavior. You should not use all the invocations available to you at once. In this case, you should reason about what invocations would be most informative at this stage. Consider patterns, the function's overall behavior, and what invocations have already been generated and their outputs.
+    2. Generate the correct implementation of the function and explain in first-person why this implementation is correct. Here, since you have complete knowledge of the function's implementation, you should generate exactly the ground truth function body. However, since your goal is to help the student learn, you should only provide the function body if you are confident the student has enough information to implement the function correctly based only on the previous invocations and their outputs.
+    
+    IMPORTANT: You should ALWAYS start with generating invocations for several rounds and use a significant proportion of the available invocations before considering implementing the function. The student will not know the function's implementation, so it's crucial to demonstrate the function's behavior through diverse, informative examples.
+
+    Remember that your goal is to TEACH the student how the function works through informative examples, not to solve the problem immediately. Rushing to implementation defeats the educational purpose. As a result, you should generate several rounds of invocations before suggesting an implementation.
+    
+    You should model your reasoning to follow the format of a student trying to implement the function themselves. Generate "INVOCATIONS" or "IMPLEMENTATION" in the response based on the decision you want the student to make. For the first few rounds, it is highly recommended to choose "INVOCATIONS". Answer IN FIRST-PERSON. DO NOT write "the student" or "the teacher". 
+    STUDENT PROMPT:
+  iteration:
+    generated_invocations_previous_iteration: |
+      The student's invocations will be provided below in the STUDENT PROMPT section. 
+
+      Based on your complete knowledge of the function, your task is to reason in first-person about what these invocation outputs reveal about the function. 
+      You must then decide and explain in first-person whether the student should:
+      1. Generate more invocations to further explore the function's behavior. You should not use all the invocations available to you at once. In this case, you should reason about what invocations would be most informative at this stage. Consider patterns, the function's overall behavior, and what invocations have already been generated and their outputs.
+      2. Generate the correct implementation of the function and explain in first-person why this implementation is correct. Here, since you have complete knowledge of the function's implementation, you should generate exactly the ground truth function body. However, since your goal is to help the student learn, you should only provide the function body if you are confident the student has enough information to implement the function correctly based only on the previous invocations and their outputs.  
+
+      Here is the function body again for reference:
+      ```python
+      [FUNCTION_BODY]
+      ```
+
+      IMPORTANT: For proper teaching, you should generate SEVERAL rounds of invocations before suggesting an implementation. Before deciding to implement, ask yourself:
+      - Has the student seen examples covering all key aspects of the function?
+      - Would a typical student be able to infer the correct implementation from just the examples they've seen so far?
+      
+      If any of these questions suggest more examples would be helpful, continue with "INVOCATIONS". Only move to "IMPLEMENTATION" after sufficient exploration.
+      
+      You should model your reasoning to follow the format of a student trying to implement the function themselves. Generate "INVOCATIONS" or "IMPLEMENTATION" in the response based on the decision you want the student to make. Answer IN FIRST-PERSON. DO NOT write "the student" or "the teacher".
+      STUDENT PROMPT:
+  final:
+    generated_invocations_previous_iteration: |
+      The student's invocations will be provided below in the STUDENT PROMPT section. 
+
+      Based on your complete knowledge of the function, your task is to reason in first-person about what these invocation outputs reveal about the function. 
+      You must then generate the correct implementation of the function and explain in first-person why this implementation is correct. Here, since you have complete knowledge of the function's implementation, you should generate exactly the ground truth function body. 
+
+      In your explanation, make sure to connect your implementation to the patterns observed in the invocation outputs. Explain how the examples helped reveal the function's behavior and how your implementation correctly captures all observed patterns.
+
+      Here is the function body again for reference:
+      ```python
+      [FUNCTION_BODY]
+      ```
+
+      You should model your reasoning to follow the format of a student trying to implement the function themselves. Generate "IMPLEMENTATION" in the response. Answer IN FIRST-PERSON. DO NOT write "the student" or "the teacher". Remember since you have complete knowledge of the function's implementation, you should generate exactly the ground truth function body in addition to your explanation.
+      STUDENT PROMPT:

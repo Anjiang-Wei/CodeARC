@@ -1,0 +1,16 @@
+def find_power_of_2_in_interval(n: int, m: int) -> int:
+    from math import log2
+
+    # Check if the interval contains a power of 2
+    if int(log2(m)) > int(log2(n)):
+        return 2**int(log2(m))
+
+    # Adjust endpoints to exclude odd numbers
+    n += n % 2
+    m -= m % 2
+    if n == m:
+        return n
+
+    # Recurse with halved endpoints and multiply the result by 2
+    return 2 * find_power_of_2_in_interval(n // 2, m // 2)
+

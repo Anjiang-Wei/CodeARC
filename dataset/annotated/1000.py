@@ -1,0 +1,4 @@
+def is_vowel_at_index(s: str, i: int) -> bool:
+    # Check if the index is within the valid range and if the character at the index is a vowel
+    return 0 <= i < len(s) and s[i] in "aieouAEIOU"
+

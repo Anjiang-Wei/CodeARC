@@ -1,0 +1,4 @@
+def solution(arr):
+    # Sort the array based on the number of 'on' bits and then by the integer value
+    return sorted(arr, key=lambda x: (bin(x).count("1"), x))
+
