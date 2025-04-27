@@ -8,11 +8,6 @@
 [![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-CodeARC_Problems-orange.svg)](https://huggingface.co/datasets/anjiangwei/CodeARC-Problems)
 [![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-CodeARC_Invocations-orange.svg)](https://huggingface.co/datasets/anjiangwei/CodeARC-Invocations)
 
-## Overview
-
-CodeARC is a benchmarking framework designed to evaluate the reasoning capabilities of large language models (LLMs) for inductive program synthesis.
-
----
 
 ## Quick Start
 
