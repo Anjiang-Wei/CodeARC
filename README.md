@@ -10,12 +10,7 @@
 
 ## Overview
 
-CodeARC is a benchmarking framework designed to evaluate the reasoning capabilities of large language models (LLMs) in the context of inductive program synthesis. It provides tools for generating test cases, running experiments, and analyzing results using two test generation frameworks:
-
-1. `streamlined_mokav`: Utilizes LLMs for test generation.
-2. `streamlined_pynguin`: Leverages Pynguin for automated test generation.
-
-This repository includes scripts for running core experiments, fine-tuning models, and evaluating results.
+CodeARC is a benchmarking framework designed to evaluate the reasoning capabilities of large language models (LLMs) for inductive program synthesis.
 
 ---
 
