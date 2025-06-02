@@ -1,12 +1,8 @@
 # CodeARC: Benchmarking Reasoning Capabilities of LLM Agents for Inductive Program Synthesis
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
-[![arXiv](https://img.shields.io/badge/arXiv-2502.12466-b31b1b.svg)](https://arxiv.org/abs/2503.23145)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/downloads/)
-
-[![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-CodeARC_Problems-orange.svg)](https://huggingface.co/datasets/anjiangwei/CodeARC-Problems)
-[![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-CodeARC_Invocations-orange.svg)](https://huggingface.co/datasets/anjiangwei/CodeARC-Invocations)
 
 
 ## Quick Start
@@ -32,7 +28,6 @@
    ```bash
    export OPENAI_API_KEY=<your_openai_api_key>
    export ANTHROPIC_API_KEY=<your_anthropic_api_key>
-   export TOGETHER_API_KEY=<your_together_api_key>
    ```
 
 
@@ -55,8 +50,8 @@
 
 The CodeARC datasets are hosted on HuggingFace:
 
-- **Problems Dataset**: [anjiangwei/CodeARC-Problems](https://huggingface.co/datasets/anjiangwei/CodeARC-Problems)
-- **Invocations Dataset**: [anjiangwei/CodeARC-Invocations](https://huggingface.co/datasets/anjiangwei/CodeARC-Invocations)
+- **Problems Dataset**: **Hidden for double-blind review**
+- **Invocations Dataset**: **Hidden for double-blind review**
 
 ### Setting up HuggingFace Account
 
@@ -86,8 +81,8 @@ You can directly load the datasets using the HuggingFace `datasets` library:
 from datasets import load_dataset
 
 # Define dataset paths
-hf_problems_path = "anjiangwei/CodeARC-Problems"
-hf_invocations_path = "anjiangwei/CodeARC-Invocations"
+hf_problems_path = "Hidden for double-blind review"
+hf_invocations_path = "Hidden for double-blind review"
 
 # Load datasets
 problems_dataset = load_dataset(hf_problems_path)
@@ -97,22 +92,6 @@ invocations_dataset = load_dataset(hf_invocations_path)
 print(problems_dataset["train"][0])
 print(invocations_dataset["train"][0])
 ```
-
----
-
-## Citation
-
-If you use this repository in your research, please cite the corresponding paper:
-
-```bibtex
-@article{wei2025codearc,
-  title={CodeARC: Benchmarking Reasoning Capabilities of LLM Agents for Inductive Program Synthesis},
-  author={Wei, Anjiang and Suresh, Tarun and Cao, Jiannan and Kannan, Naveen and Wu, Yuheng and Yan, Kai and Teixeira, Thiago SFX and Wang, Ke and Aiken, Alex},
-  journal={arXiv preprint arXiv:2503.23145},
-  year={2025}
-}
-```
-
 ---
 
 ## License
