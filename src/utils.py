@@ -59,7 +59,7 @@ def read_dataset_files(dataset_type: str, sft_distillation: bool = False) -> lis
     Reads all Python files from the specified dataset directory.
     
     Args:
-        dataset_type: The subdirectory name under '/home/tarun/SynBench/dataset/'
+        dataset_type: The subdirectory name
     
     Returns:
         List of strings containing the content of each Python file, sorted by numeric filename
